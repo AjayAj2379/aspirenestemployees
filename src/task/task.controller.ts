@@ -20,8 +20,8 @@ export class TaskController {
         return this.taskService.findOne(_taskId);
     }
     @Get("/filter?")
-    @ApiParam({name:'name',required:true,description:'only alphabets'})
-    findQueryData(@Query('name') taskName):Task {
+    @ApiParam({name:'taskName',required:true,description:'only alphabets'})
+    findQueryData(@Query('taskName') taskName){
         console.log(taskName)
         return this.taskService.findName(taskName);
     }
