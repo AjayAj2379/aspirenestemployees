@@ -1,11 +1,47 @@
-import {Body, Controller, Get, Param, Post, Query} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Post, Put, Query} from '@nestjs/common';
 import {TaskService} from "./task.service";
-import {Task} from "../models/task-entity";
+
 import {ApiParam, ApiTags} from "@nestjs/swagger";
+import {TaskDTO} from "../models/taskdto";
+import {UpdateTaskDTO} from "../models/taskupdatedto";
 @ApiTags("tasks")
 @Controller('tasks')
 export class TaskController {
-   //dependency injection
+
+constructor(private readonly taskService:TaskService) {
+}
+
+    @Get()
+    async index() {
+        return await this.taskService.findAll();
+    }
+
+    @Get(':id')
+    async find(@Param('id') id: number) {
+        return await this.taskService.findOne(id);
+    }
+
+    @Post()
+    //@UsePipes(new JoiValidationPipe(UserSchema))
+    async create(@Body() taskDTO:TaskDTO) {
+        console.log(taskDTO);
+        return await this.taskService.create(taskDTO);
+    }
+
+    @Put(':id')
+    async update(@Param('id') id: number, @Body() updateDTO: UpdateTaskDTO) {
+        return await this.taskService.update(id, updateDTO);
+    }
+
+    @Delete(':id')
+    async delete(@Param('id') id: number) {
+        return await this.taskService.delete(id);
+    }
+
+
+}
+/*
+//dependency injection
     constructor(private taskService:TaskService){
 
     }
@@ -30,5 +66,4 @@ export class TaskController {
     addTask(@Body() task:Task){
          this.taskService.addTask(task);
        }
-
-}
+ */

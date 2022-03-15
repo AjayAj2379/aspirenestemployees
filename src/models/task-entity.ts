@@ -1,3 +1,4 @@
+/*
 import {ApiProperty} from "@nestjs/swagger";
 
 export class Task{
@@ -26,3 +27,4 @@ export class Task{
     }
 }
 
+*/

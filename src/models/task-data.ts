@@ -1,3 +1,4 @@
+/*
 import {Task} from "./task-entity";
 
 export const tasks:Task[]=[
@@ -5,3 +6,4 @@ export const tasks:Task[]=[
     new Task(2,'Discussion',new Date(2022,2,22)),
     new Task(3,'Report',new Date(2022,2,25))
 ]
+*/
