@@ -15,26 +15,31 @@ constructor(private readonly taskService:TaskService) {
     async index() {
         return await this.taskService.findAll();
     }
-
+    //@ApiParam({name:'ObjectId',required:true,description:'ID'})
     @Get(':id')
-    async find(@Param('id') id: number) {
+    async find(@Param('id') id:number) {
         return await this.taskService.findOne(id);
     }
 
+    @Get('/filterByName/:taskName')
+    async findByTaskName(@Param('taskName') taskName:string) {
+    console.log(taskName);
+     return await this.taskService.findByName(taskName);
+    }
     @Post()
     //@UsePipes(new JoiValidationPipe(UserSchema))
     async create(@Body() taskDTO:TaskDTO) {
         console.log(taskDTO);
         return await this.taskService.create(taskDTO);
     }
-
+   // @ApiParam({name:'ObjectId',required:true,description:'ID'})
     @Put(':id')
-    async update(@Param('id') id: number, @Body() updateDTO: UpdateTaskDTO) {
+    async update(@Param('id') id:string, @Body() updateDTO: UpdateTaskDTO) {
         return await this.taskService.update(id, updateDTO);
     }
 
     @Delete(':id')
-    async delete(@Param('id') id: number) {
+    async delete(@Param('id') id: string) {
         return await this.taskService.delete(id);
     }
 

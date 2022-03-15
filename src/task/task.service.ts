@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import {InjectModel} from "@nestjs/mongoose";
 
-import { Model } from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 import {Task, TaskDocument} from "../schemas/task-schema";
 import {TaskDTO} from "../models/taskdto";
 import {UpdateTaskDTO} from "../models/taskupdatedto";
@@ -18,8 +18,14 @@ export class TaskService {
     }
 
     //select with where
-    async findOne(taskId: number): Promise<Task> {
-        return await this.model.findById(taskId).exec();
+    async findOne(taskId:number): Promise<Task[]> {
+
+        return await this.model.find({taskId:taskId}).exec();
+    }
+
+    async findByName(tName:string): Promise<Task[]> {
+       console.log(tName);
+        return await this.model.find({taskName:tName}).exec();
     }
 //insert query
     async create(taskDTO: TaskDTO): Promise<Task> {
@@ -29,12 +35,14 @@ export class TaskService {
         }).save();
     }
 //update
-    async update(taskId: number, updateTaskDto: UpdateTaskDTO): Promise<Task> {
-        return await this.model.findByIdAndUpdate(taskId, updateTaskDto).exec();
+    async update(taskId, updateTaskDto: UpdateTaskDTO): Promise<Task> {
+        var id= new mongoose.Types.ObjectId(taskId)
+        return await this.model.findByIdAndUpdate(id, updateTaskDto).exec();
     }
 //delete
-    async delete(taskId: number): Promise<Task> {
-        return await this.model.findByIdAndDelete(taskId).exec();
+    async delete(taskId: string): Promise<Task> {
+        var id= new mongoose.Types.ObjectId(taskId)
+        return await this.model.findByIdAndDelete(id).exec();
     }
 
 
