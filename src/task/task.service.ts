@@ -13,4 +13,14 @@ export class TaskService {
      tasks.push(task)
  }
 
+ findOne(id:number){
+     var taskObj:Task;
+     tasks.forEach(t=>{
+         if(t.taskId==id){
+             taskObj=t;
+         }
+     })
+
+     return taskObj;
+ }
 }

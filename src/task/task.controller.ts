@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Post} from '@nestjs/common';
+import {Body, Controller, Get, Param, Post, Query} from '@nestjs/common';
 import {TaskService} from "./task.service";
 import {Task} from "../models/task-entity";
 
@@ -12,6 +12,17 @@ export class TaskController {
     getTasks(): Task[]{
         return this.taskService.sendTasks();
     }
+
+    @Get(':id')
+    find(@Query('id') id):Task {
+        return this.taskService.findOne(id);
+    }
+    @Get("/filter?")
+    findQueryData(@Query('id') id: number):Task {
+        console.log(id)
+        return this.taskService.findOne(id);
+    }
+
     @Post()
     addTask(@Body() task:Task){
          this.taskService.addTask(task);
