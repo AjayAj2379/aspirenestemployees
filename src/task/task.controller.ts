@@ -1,8 +1,9 @@
 import {Body, Controller, Get, Param, Post, Query} from '@nestjs/common';
 import {TaskService} from "./task.service";
 import {Task} from "../models/task-entity";
-
-@Controller('task')
+import {ApiParam, ApiTags} from "@nestjs/swagger";
+@ApiTags("tasks")
+@Controller('tasks')
 export class TaskController {
    //dependency injection
     constructor(private taskService:TaskService){
@@ -14,13 +15,15 @@ export class TaskController {
     }
 
     @Get(':id')
-    find(@Param('id') id):Task {
-        return this.taskService.findOne(id);
+    @ApiParam({name:'id',required:true,description:'positive number'})
+    find(@Param('id') _taskId):Task {
+        return this.taskService.findOne(_taskId);
     }
     @Get("/filter?")
-    findQueryData(@Query('name') name):Task {
-        console.log(name)
-        return this.taskService.findName(name);
+    @ApiParam({name:'name',required:true,description:'only alphabets'})
+    findQueryData(@Query('name') taskName):Task {
+        console.log(taskName)
+        return this.taskService.findName(taskName);
     }
 
     @Post()

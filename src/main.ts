@@ -9,10 +9,10 @@ async function bootstrap() {
       .setTitle('Employee API')
       .setDescription('The EmployeeAPI description')
       .setVersion('1.0')
-      .addTag('task')
+      .addTag('tasks')
       .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('/', app, document);
 
   await app.listen(3000);
 }

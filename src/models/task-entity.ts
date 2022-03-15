@@ -1,6 +1,11 @@
+import {ApiProperty} from "@nestjs/swagger";
+
 export class Task{
+    @ApiProperty()
     private _taskId:number;
+    @ApiProperty()
     private _taskName:string;
+    @ApiProperty()
     private _deadline:Date;
     constructor(taskId:number,taskName:string,deadline:Date) {
         this._taskId=taskId;
