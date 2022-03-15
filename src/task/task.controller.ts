@@ -14,13 +14,13 @@ export class TaskController {
     }
 
     @Get(':id')
-    find(@Query('id') id):Task {
+    find(@Param('id') id):Task {
         return this.taskService.findOne(id);
     }
     @Get("/filter?")
-    findQueryData(@Query('id') id: number):Task {
-        console.log(id)
-        return this.taskService.findOne(id);
+    findQueryData(@Query('name') name):Task {
+        console.log(name)
+        return this.taskService.findName(name);
     }
 
     @Post()

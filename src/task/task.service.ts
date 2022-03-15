@@ -23,4 +23,14 @@ export class TaskService {
 
      return taskObj;
  }
+    findName(name:string){
+        var taskObj:Task;
+        tasks.forEach(t=>{
+            if(t.taskName==name){
+                taskObj=t;
+            }
+        })
+
+        return taskObj;
+    }
 }
