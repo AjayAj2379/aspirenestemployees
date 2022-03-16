@@ -68,7 +68,7 @@ constructor(private readonly taskService:TaskService) {
     }
 
     @Post()
-    addTask(@Body() task:Task){
-         this.taskService.addTask(task);
+    addTask(@Body() taskv1:Task){
+         this.taskService.addTask(taskv1);
        }
  */

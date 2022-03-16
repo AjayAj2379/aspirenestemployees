@@ -1,5 +1,5 @@
 /*
-import {Task} from "./task-entity";
+import {Task} from "./taskv1-entity";
 
 export const tasks:Task[]=[
     new Task(1,'Training',new Date(2022,2,20)),

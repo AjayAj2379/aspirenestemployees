@@ -1,12 +1,19 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import mongoose, { Document, Types } from 'mongoose';
+
+
+import {Employee} from "./employee-schema";
+import Mongoose from "mongoose";
+
+
 
 
 export type TaskDocument = Task & Document;
 
 @Schema()
 export class Task{
-    //  @Prop({ required: true })
+
+
     @Prop()
     taskId: number;
 
@@ -15,6 +22,9 @@ export class Task{
 
     @Prop()
     deadline: Date;
+
+    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Employee' })
+    employees:Employee[];
 }
 
 export const TaskSchema = SchemaFactory.createForClass(Task);

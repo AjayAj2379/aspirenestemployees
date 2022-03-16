@@ -5,21 +5,27 @@ import mongoose, { Model } from 'mongoose';
 import {Task, TaskDocument} from "../schemas/task-schema";
 import {TaskDTO} from "../models/taskdto";
 import {UpdateTaskDTO} from "../models/taskupdatedto";
+import {Employee, EmployeeDocument} from "../schemas/employee-schema";
+
 
 
 @Injectable()
 export class TaskService {
     constructor(
         @InjectModel(Task.name) private readonly model: Model<TaskDocument>,
+       // @InjectModel(Employee.name) private readonly empmodel: Model<EmployeeDocument>
     ) {}
 //select all
     async findAll(): Promise<Task[]> {
+
+
         return await this.model.find().exec();
     }
 
     //select with where
     async findOne(taskId:number): Promise<Task[]> {
-
+      // var id= new mongoose.Types.ObjectId(taskId)
+        //return await this.model.findById(id).exec();
         return await this.model.find({taskId:taskId}).exec();
     }
 
