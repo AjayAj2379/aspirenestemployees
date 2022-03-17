@@ -19,7 +19,7 @@ export class TaskService {
     async findAll(): Promise<Task[]> {
 
 
-        return await this.model.find().exec();
+        return await this.model.find().populate('employees')
     }
 
     //select with where

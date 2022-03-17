@@ -16,3 +16,14 @@ type Query {
   employee(employeeNo: String!): EmployeeModel!
   employees: [EmployeeModel!]!
 }
+
+type Mutation {
+  createEmployee(input: EmployeeInput!): EmployeeModel!
+}
+
+input EmployeeInput {
+  employeeNo: Float!
+  firstName: String!
+  lastName: String!
+  dob: Date!
+}
