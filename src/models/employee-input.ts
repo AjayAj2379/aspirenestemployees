@@ -11,6 +11,6 @@ export class EmployeeInput {
     readonly lastName: string;
     @Field()
     readonly dob: Date;
-    @Field()
-    readonly task:TaskInput;
+  //  @Field({nullable:true})
+   // readonly task:TaskInput;
 }

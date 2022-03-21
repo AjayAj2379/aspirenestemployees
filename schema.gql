@@ -2,22 +2,21 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type TaskModel {
-  taskId: Float!
-  taskName: String!
-  deadline: Date!
-  employees: [EmployeeModel!]!
-}
-
-"""Date custom scalar type"""
-scalar Date
-
 type EmployeeModel {
   employeeNo: Float!
   firstName: String!
   lastName: String!
   dob: Date!
-  task: TaskModel!
+}
+
+"""Date custom scalar type"""
+scalar Date
+
+type TaskModel {
+  taskId: Float!
+  taskName: String!
+  deadline: Date!
+  employees: [EmployeeModel!]!
 }
 
 type Query {
@@ -36,12 +35,4 @@ input EmployeeInput {
   firstName: String!
   lastName: String!
   dob: Date!
-  task: TaskInput!
-}
-
-input TaskInput {
-  taskId: Float!
-  taskName: String!
-  deadline: Date!
-  employees: [EmployeeInput!]!
 }

@@ -19,7 +19,7 @@ export class EmployeeModel {
     @Field()
     @Column()
     dob: Date;
-    @Field()
-    @Column()
-    task:TaskModel;
+  //  @Field()
+  //  @Column()
+    //task:TaskModel;
 }

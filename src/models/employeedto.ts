@@ -11,6 +11,7 @@ export class EmployeeDTO{
     lastName:string;
     @ApiProperty()
     dob:Date;
-    @ApiPropertyOptional({default: null, required: false})
-    task:TaskDTO;
+  //  @ApiPropertyOptional({default: null, required: false})
+    //@ApiProperty()
+   // task:TaskDTO;
 }

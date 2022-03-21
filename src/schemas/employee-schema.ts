@@ -23,8 +23,8 @@ export class Employee{
     @Prop()
     dob: Date;
 
-    @Prop( {type: mongoose.Schema.Types.ObjectId, ref: 'Task' })
-    task:Task;
+   // @Prop( {type: mongoose.Schema.Types.ObjectId, ref: 'Task' })
+  //  task:Task;
 }
 
 export const EmployeeSchema = SchemaFactory.createForClass(Employee);
