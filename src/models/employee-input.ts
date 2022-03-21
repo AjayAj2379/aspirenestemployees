@@ -1,4 +1,5 @@
 import { InputType, Field, Int } from '@nestjs/graphql';
+import {TaskInput} from "./task-input";
 
 @InputType()
 export class EmployeeInput {
@@ -9,5 +10,7 @@ export class EmployeeInput {
     @Field()
     readonly lastName: string;
     @Field()
-    readonly dob: Date
+    readonly dob: Date;
+    @Field()
+    readonly task:TaskInput;
 }

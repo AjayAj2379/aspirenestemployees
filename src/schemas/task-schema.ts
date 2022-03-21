@@ -23,7 +23,7 @@ export class Task{
     @Prop()
     deadline: Date;
 
-    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Employee' })
+    @Prop({ type: [mongoose.Schema.Types.ObjectId], ref: 'Employee' })
     employees:Employee[];
 }
 

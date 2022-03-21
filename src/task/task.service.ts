@@ -19,14 +19,15 @@ export class TaskService {
     async findAll(): Promise<Task[]> {
 
 
-        return await this.model.find().populate('employees')
+        return this.model.find().populate('employees', null, Employee.name)
+            .exec()
     }
 
     //select with where
-    async findOne(taskId:number): Promise<Task[]> {
-      // var id= new mongoose.Types.ObjectId(taskId)
-        //return await this.model.findById(id).exec();
-        return await this.model.find({taskId:taskId}).exec();
+    async findOne(taskId:string): Promise<Task> {
+      var id= new mongoose.Types.ObjectId(taskId);
+      return await this.model.findById(id).exec();
+        //return await this.model.find({taskId:taskId}).exec();
     }
 
     async findByName(tName:string): Promise<Task[]> {
@@ -34,16 +35,24 @@ export class TaskService {
         return await this.model.find({taskName:tName}).exec();
     }
 //insert query
-    async create(taskDTO: TaskDTO): Promise<Task> {
-        return await new this.model({
+    async create(taskDTO: TaskDTO):Promise<TaskDTO> {
+
+        return await  new this.model({
             ...taskDTO,
             createdAt: new Date(),
         }).save();
+
+
+
     }
 //update
-    async update(taskId, updateTaskDto: UpdateTaskDTO): Promise<Task> {
+    async update(taskId, updateTaskDto: UpdateTaskDTO) {
         var id= new mongoose.Types.ObjectId(taskId)
-        return await this.model.findByIdAndUpdate(id, updateTaskDto).exec();
+        updateTaskDto.employees.forEach(x=>{
+             this.model.findByIdAndUpdate({_id:id},
+                {$push:{employees:x}}).exec();
+        })
+
     }
 //delete
     async delete(taskId: string): Promise<Task> {

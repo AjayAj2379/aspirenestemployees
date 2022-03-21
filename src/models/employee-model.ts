@@ -1,9 +1,12 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
 import { ObjectType, Field } from '@nestjs/graphql';
+import {TaskModel} from "./task-model";
 
 @ObjectType()
 @Entity()
 export class EmployeeModel {
+
+
     @Field()
    // @PrimaryGeneratedColumn("identity")
     employeeNo: number;
@@ -16,5 +19,7 @@ export class EmployeeModel {
     @Field()
     @Column()
     dob: Date;
-
+    @Field()
+    @Column()
+    task:TaskModel;
 }

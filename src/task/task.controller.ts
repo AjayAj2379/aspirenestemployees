@@ -17,7 +17,7 @@ constructor(private readonly taskService:TaskService) {
     }
     //@ApiParam({name:'ObjectId',required:true,description:'ID'})
     @Get(':id')
-    async find(@Param('id') id:number) {
+    async find(@Param('id') id:string) {
         return await this.taskService.findOne(id);
     }
 
@@ -29,8 +29,8 @@ constructor(private readonly taskService:TaskService) {
     @Post()
     //@UsePipes(new JoiValidationPipe(UserSchema))
     async create(@Body() taskDTO:TaskDTO) {
-        console.log(taskDTO);
-        return await this.taskService.create(taskDTO);
+        //console.log(taskDTO);
+        await this.taskService.create(taskDTO);
     }
    // @ApiParam({name:'ObjectId',required:true,description:'ID'})
     @Put(':id')
