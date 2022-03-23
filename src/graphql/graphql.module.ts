@@ -7,6 +7,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
             driver: ApolloDriver,
             autoSchemaFile: 'schema.gql',
             typePaths: ['./**/*.gql'],
+            installSubscriptionHandlers: true
         }),
     ]})
 export class GraphqlModule {

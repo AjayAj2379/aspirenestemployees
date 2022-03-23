@@ -28,6 +28,7 @@ type Query {
 
 type Mutation {
   createEmployee(input: EmployeeInput!): EmployeeModel!
+  createArgsEmployee(employeeNo: Float!, firstName: String!, lastName: String!, dob: Date!): EmployeeModel!
 }
 
 input EmployeeInput {

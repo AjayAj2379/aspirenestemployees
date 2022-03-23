@@ -15,6 +15,18 @@ export class EmployeeResolver {
         return this.employeeService.create(input);
     }
 
+    @Mutation(returns => EmployeeModel)
+    async createArgsEmployee(@Args('employeeNo') employeeNo:number,@Args('firstName') firstName:string,
+                             @Args('lastName') lastName:string,@Args('dob')dob:Date): Promise<EmployeeModel> {
+        let employee:EmployeeInput={
+            "employeeNo":employeeNo,
+            "firstName":firstName,
+            "lastName":lastName,
+            "dob":dob
+        }
+
+        return this.employeeService.create(employee);
+    }
     @Query(returns => EmployeeModel)
     async employee(@Args('employeeNo') employeeNo: string): Promise<EmployeeModel> {
         return await this.employeeService.findOne(employeeNo);
