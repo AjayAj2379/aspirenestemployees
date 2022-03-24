@@ -37,3 +37,7 @@ input EmployeeInput {
   lastName: String!
   dob: Date!
 }
+
+type Subscription {
+  employeeAdded: EmployeeModel!
+}

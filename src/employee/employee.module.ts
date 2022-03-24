@@ -6,6 +6,7 @@ import {EmployeeController} from "./employee.controller";
 import {EmployeeService} from "./employee.service";
 import {DateScalar} from "../../commons/date.scalar";
 import {EmployeeResolver} from "../resolvers/employee-resolver";
+import {EmployeesPubSubResolver} from "../resolvers/EmployeePubSubResolver";
 
 
 @Module({
@@ -13,6 +14,6 @@ import {EmployeeResolver} from "../resolvers/employee-resolver";
         MongooseModule.forFeature([{ name: Employee.name, schema: EmployeeSchema }]),
     ],
     controllers: [EmployeeController],
-    providers: [EmployeeService,DateScalar,EmployeeResolver]
+    providers: [EmployeeService,DateScalar,EmployeeResolver,EmployeesPubSubResolver]
 })
 export class EmployeeModule {}
